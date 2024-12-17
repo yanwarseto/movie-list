@@ -39,7 +39,7 @@ Untuk menjalankan aplikasi ini dengan lancar, Anda perlu mempersiapkan beberapa 
 Berikut adalah langkah-langkah untuk menginstall aplikasi ini:
 
 ### **Langkah 1: Menyiapkan Web Server**
-- Pastikan **PHP 7.4** atau lebih baru sudah terinstal di server Anda.
+- Pastikan **PHP 8.0** atau lebih baru sudah terinstal di server Anda.
 - Install **Apache** atau **Nginx** sebagai web server.
 - Konfigurasi server agar dapat menjalankan aplikasi PHP.
 
