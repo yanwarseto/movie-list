@@ -77,6 +77,7 @@ Berikut adalah langkah-langkah untuk menginstall aplikasi ini:
 
 ### **Langkah 6: Menjalankan Aplikasi**
 - Jalankan web server Anda dan pastikan aplikasi dapat diakses melalui browser.
+- Buka codingan dan masuk ke terminal, lalu ketik _php spark serve_.
 - Aplikasi seharusnya dapat menampilkan data film dari TMDb dan memungkinkan Anda untuk mengedit sinopsis film.
 
 ---
