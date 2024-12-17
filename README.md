@@ -80,3 +80,16 @@ Berikut adalah langkah-langkah untuk menginstall aplikasi ini:
 - Aplikasi seharusnya dapat menampilkan data film dari TMDb dan memungkinkan Anda untuk mengedit sinopsis film.
 
 ---
+
+## 4. ERD (Entity-Relationship Diagram)
+
+Untuk aplikasi ini, berikut adalah desain ERD yang menggambarkan relasi antar entitas dalam aplikasi:
+
+### Tabel: DETAIL_MOV
+| Field    | Tipe Data | Keterangan                                           |
+|----------|-----------|------------------------------------------------------|
+| **ID**   | INTEGER   | Primary Key, ID film                                |
+| **OVERVIEW** | TEXT     | Deskripsi atau sinopsis film                        |
+
+**ID**: Tabel ini memiliki relasi satu-ke-satu dengan ID film yang diambil dari TMDb.
+
