@@ -1,68 +1,82 @@
-# CodeIgniter 4 Application Starter
+# Dokumentasi Aplikasi
 
-## What is CodeIgniter?
+## 1. Teknologi yang Digunakan
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Aplikasi ini dibangun dengan teknologi dan layanan berikut:
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+### **Backend Framework:**
+- **CodeIgniter 4**: Framework PHP yang digunakan untuk membangun aplikasi backend. CodeIgniter mempermudah pengembangan aplikasi web dengan pola arsitektur Model-View-Controller (MVC).
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### **Database:**
+- **PostgreSQL**: Digunakan sebagai database untuk menyimpan data terkait film, seperti detail film dan overview yang diperbarui.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### **External API:**
+- **The Movie Database (TMDb) API**: API eksternal digunakan untuk mengambil informasi tentang film, termasuk data seperti judul, poster, dan genre. API ini memungkinkan aplikasi untuk mengakses informasi film yang terus diperbarui.
 
-## Installation & updates
+---
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 2. Service yang Perlu Disiapkan untuk Menjalankan Website
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+Untuk menjalankan aplikasi ini dengan lancar, Anda perlu mempersiapkan beberapa layanan dan konfigurasi berikut:
 
-## Setup
+### **Layanan yang Diperlukan:**
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+#### **Web Server:**
+- Anda memerlukan web server seperti **Apache** atau **Nginx** untuk menjalankan aplikasi berbasis PHP. Anda juga harus memastikan **PHP versi 7.4** atau yang lebih baru terinstal di server.
 
-## Important Change with index.php
+#### **Database:**
+- **PostgreSQL** harus terinstal dan berjalan di server. Anda juga perlu membuat database yang sesuai dengan konfigurasi yang terdapat di aplikasi.
+- Pastikan tabel yang relevan sudah dibuat di database (misalnya `MOVIE.DETAIL_MOV` untuk menyimpan detail film).
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+#### **API Key untuk TMDb:**
+- Diperlukan **API key** untuk mengakses data film dari **The Movie Database (TMDb)**. Anda dapat mendapatkan API key dari [TMDb API](https://www.themoviedb.org/).
+- **API key** ini digunakan dalam aplikasi untuk mengambil data film secara otomatis.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+---
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## 3. Cara Meng-Install Aplikasi
 
-## Repository Management
+Berikut adalah langkah-langkah untuk menginstall aplikasi ini:
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+### **Langkah 1: Menyiapkan Web Server**
+- Pastikan **PHP 7.4** atau lebih baru sudah terinstal di server Anda.
+- Install **Apache** atau **Nginx** sebagai web server.
+- Konfigurasi server agar dapat menjalankan aplikasi PHP.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### **Langkah 2: Menyiapkan Database PostgreSQL**
+- Install **PostgreSQL** di server Anda.
+- restore sql yang diberikan di repo
+- Konfigurasi **username** dan **password** database sesuai dengan file konfigurasi aplikasi (`app/config/Database.php`).
 
-## Server Requirements
+### **Langkah 3: Meng-Clone Aplikasi dan Install Dependencies**
+- Clone repository aplikasi ini ke server Anda:
+    ```bash
+    git clone <repository-url>
+    cd <folder-aplikasi>
+    ```
+- Install dependensi menggunakan **Composer**:
+    ```bash
+    composer install
+    ```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+### **Langkah 4: Konfigurasi database**
+- Sesuaikan pengaturan **database** :
+    ```ini
+    database.default.hostname = localhost
+    database.default.username = postgres
+    database.default.password = rahasia123
+    database.default.database = movie_db
+    ```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+### **Langkah 5: Menyiapkan API Key**
+- Daftar di **TMDb** untuk mendapatkan **API Key**.
+- Masukkan **API Key** yang  didapatkan ke dalam file **model** `Movie_m.php`, pada bagian:
+    ```php
+    protected $api_key = '6bfaa39b0a3a25275c765dcaddc7dae7';
+    ```
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+### **Langkah 6: Menjalankan Aplikasi**
+- Jalankan web server Anda dan pastikan aplikasi dapat diakses melalui browser.
+- Aplikasi seharusnya dapat menampilkan data film dari TMDb dan memungkinkan Anda untuk mengedit sinopsis film.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+---
