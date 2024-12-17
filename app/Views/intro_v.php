@@ -39,7 +39,16 @@
             </div>
             <div class="overview">
                 <h3>Overview</h3>
-                <p><?= $movie['overview'] ?></p>
+                <p> <?php
+                            // Mengecek apakah ada overview dari database
+                            if (isset($getOverviewDb[$movie['id']]) && $getOverviewDb[$movie['id']] != null): ?>
+                    <?= $getOverviewDb[$movie['id']] ?>
+                    <!-- Menampilkan overview dari database -->
+                    <?php else: ?>
+                    <?= $movie['overview'] ?>
+                    <!-- Menampilkan overview dari API -->
+                    <?php endif; ?>
+                </p>
 
                 <a class="details-button" href="/details/<?= $movie['id'] ?>">Details</a>
             </div>

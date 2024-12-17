@@ -16,7 +16,19 @@ class Home extends BaseController
 
     public function index()
     {
-        $data['movies'] = $this->movie_m->getMovies(1);
+        $movies = $this->movie_m->getMovies(1);
+        $getOverviewDb = [];
+
+        foreach ($movies as $movie) {
+            $overview = $this->movie_m->getDetailDb($movie['id']);
+            if ($overview !== null) {
+                $getOverviewDb[$movie['id']] = $overview;
+            }
+        }
+        $data['movies'] = $movies;
+        $data['getOverviewDb'] = $getOverviewDb;
+        var_dump($data['getOverviewDb']);
+        die;
         return view('intro_v', $data);
     }
 
@@ -24,7 +36,17 @@ class Home extends BaseController
     {
         $searchTerm = $this->request->getVar('search');
         $searchTerm = urldecode($searchTerm);
-        $data['movies'] = $this->movie_m->searchMovies($searchTerm);
+        $movies = $this->movie_m->searchMovies($searchTerm);
+        $getOverviewDb = [];
+        foreach ($movies as $movie) {
+            $overview = $this->movie_m->getDetailDb($movie['id']);
+            if ($overview !== null) {
+                $getOverviewDb[$movie['id']] = $overview;
+            }
+        }
+
+        $data['movies'] = $movies;
+        $data['getOverviewDb'] = $getOverviewDb;
         return view('intro_v', $data);
     }
 
