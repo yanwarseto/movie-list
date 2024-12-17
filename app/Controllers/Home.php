@@ -27,8 +27,6 @@ class Home extends BaseController
         }
         $data['movies'] = $movies;
         $data['getOverviewDb'] = $getOverviewDb;
-        var_dump($data['getOverviewDb']);
-        die;
         return view('intro_v', $data);
     }
 
